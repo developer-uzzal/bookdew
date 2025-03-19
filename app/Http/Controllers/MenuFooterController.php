@@ -68,7 +68,7 @@ class MenuFooterController extends Controller
                 $menuFooter->copy_right = $request->copy_right;
                 $menuFooter->save();
 
-            return redirect()->back()->with('success', ['status' => 'success', 'message' => 'Book updated successfully']);
+            return redirect()->back()->with('success', ['status' => 'success', 'message' => 'Menu footer updated successfully']);
 
             }else{
 
@@ -101,7 +101,7 @@ class MenuFooterController extends Controller
                     $menuFooter->year = $request->copy_right_year;
                     $menuFooter->copy_right = $request->copy_right;
                     $menuFooter->save();
-                    return redirect()->back()->with('success', ['status' => 'success', 'message' => 'Book updated successfully']);
+                    return redirect()->back()->with('success', ['status' => 'success', 'message' => 'Menu footer updated successfully']);
                 }
 
                 $menuFooter = MenuFooter::first();
@@ -116,7 +116,7 @@ class MenuFooterController extends Controller
                 $menuFooter->year = $request->copy_right_year;
                 $menuFooter->copy_right = $request->copy_right;
                 $menuFooter->save();
-                return redirect()->back()->with('success', ['status' => 'success', 'message' => 'Book updated successfully']);
+                return redirect()->back()->with('success', ['status' => 'success', 'message' => 'Menu footer updated successfully']);
             }
 
 

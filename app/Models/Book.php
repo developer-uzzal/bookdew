@@ -42,7 +42,7 @@ class Book extends Model
     }
 
     function publication(){
-        return $this->belongsTo(publication::class);
+        return $this->belongsTo(Publication::class);
     }
 
     function country(){
