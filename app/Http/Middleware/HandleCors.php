@@ -15,14 +15,16 @@ class HandleCors
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $response = $next($request); 
+        // $allowedOrigin = env('APP_URL', 'http://localhost');
 
-        $response->headers->set('Access-Control-Allow-Origin', 'https://ebook.a2zsofthub.com::5173'); 
-        $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); 
-        $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With'); 
-        $response->headers->set('Access-Control-Allow-Credentials', 'true'); 
+        $response = $next($request);
+
+        $response->headers->set('Access-Control-Allow-Origin', ('https://ebook.a2zsofthub.com::5173'));
+        $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+        $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+        $response->headers->set('Access-Control-Allow-Credentials', 'true');
         return $response;
 
-        
+
     }
 }

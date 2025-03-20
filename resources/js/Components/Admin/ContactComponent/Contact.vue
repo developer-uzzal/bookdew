@@ -9,7 +9,6 @@
                     <div class="card-body">
                         <form @submit.prevent="submit">
 
-                            <!-- Title & Publish Year -->
                             <div class="row">
                                 <div class="col-md-12 mb-3">
                                     <label for="title" class="form-label">Title</label>
@@ -26,9 +25,9 @@
                             </div>
 
 
-                            <!-- Publication & Country -->
+
                             <div class="row">
-                               
+
 
                                 <div class="col-md-12 mb-3">
                                     <label for="address" class="form-label">Description</label>
@@ -39,8 +38,6 @@
 
                             </div>
 
-
-                            <!-- Submit Button -->
                             <button type="submit" class="btn btn-success " :disabled="form.processing">Submit</button>
 
                         </form>
@@ -72,7 +69,7 @@ const form = useForm({
 
 
 const submit = () => {
-    
+
 
     if (form.title == '') {
         new Notify({
@@ -87,13 +84,13 @@ const submit = () => {
             autotimeout: 2000,
         })
     }else if (form.map == '') {
-        
+
             new Notify({
                 status: 'error',
                 title: 'map link is required',
                 autotimeout: 2000,
             })
-       
+
 
     }else{
         form.post('/user-contact-create', {

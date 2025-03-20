@@ -20,10 +20,30 @@ use App\Http\Controllers\Frontend\TrandingController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MenuFooterController;
 use App\Http\Controllers\ProfileController;
+use App\Models\BookLanguage;
+use App\Models\MenuFooter;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+Route::get("/link",function(){
+    // \symlink('/home/bookdewc/test.bookdew.com/storage/app/public', '/home/bookdewc/test.bookdew.com/public/storage');
+    // dd('Done.');
+    Artisan::call('optimize:clear');
+    Artisan::call('storage:link');
+    dd('Done.');
+});
+
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');      // Clear application cache
+    Artisan::call('config:clear');     // Clear configuration cache
+    Artisan::call('config:cache');     // Rebuild configuration cache
+    Artisan::call('route:clear');      // Clear route cache
+    Artisan::call('view:clear');       // Clear compiled views
+
+    return redirect()->back()->with('success',['status' => 'success', 'message' => 'Cache cleared successfully']);
+});
 
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
@@ -33,12 +53,19 @@ Route::get('/category/{slug}',[FontCategoryController::class, 'index'])->name('c
 Route::get('/book/language/{slug}',[LanguagesController::class, 'index'])->name('languages');
 Route::get('/contact',[ContactController::class, 'index'])->name('contact');
 Route::post('/contact/message',[ContactController::class, 'store'])->name('contact.message');
-Route::get('/donate',[DonateController::class, 'index'])->name('donate');
+Route::get('/donate-us',[DonateController::class, 'index'])->name('donate');
 Route::get('/download-book',[FrontendBookController::class,'bookDownload'])->name('book.download');
 Route::post('/download-success',[FrontendBookController::class,'downloadIncrement'])->name('download.increment');
 Route::post('/premium-members',[MemberController::class,'store'])->name('premium.members');
 
 Route::get('/book/{slug}',[FrontendBookController::class,'SingleBook'])->name('SingleBook');
+
+Route::get('/privacy-policy', function () {
+        $menuFooter = MenuFooter::first();
+        $languages = BookLanguage::orderBy('name', 'asc')->get();
+
+    return Inertia::render('PrivacyPolicy/PrivacyPolicy',["menuFooter" => $menuFooter,"languages"=>$languages]);
+})->name('privacy.policy');
 
 
 Route::get('/admin/login', [UserController::class, 'login'])->name('admin.login');
@@ -106,6 +133,11 @@ Route::middleware([AuthenticationMiddleaware ::class])->group(function () {
     Route::post('/admin/contact-new/update',[ContactController::class, 'AdminNewUpdatesContactNew']);
 
 
+    Route::get('/user-donate',[DonateController::class, 'AdminDonatePage']);
+    Route::post('/user-donate-create',[ DonateController::class, 'AdminDonateCreate']);
+    Route::post('/user-donate-update',[ DonateController::class, 'AdminDonateUpdate']);
+    Route::delete('/user-donate-delete',[ DonateController::class, 'AdminDonateDelete']);
+    Route::post('/user-donate-update-info',[ DonateController::class, 'AdminDonateUpdateInfo']);
 
 
 });

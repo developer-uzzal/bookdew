@@ -14,8 +14,8 @@
                             <div class="row">
                                 <div class="col-md-4 mb-3">
                                     <label for="title" class="form-label">Title</label>
-                                    <input type="text" v-model="form.title" class="form-control"
-                                        id="title" placeholder="Enter Website Title">
+                                    <input type="text" v-model="form.title" class="form-control" id="title"
+                                        placeholder="Enter Website Title">
                                 </div>
 
                                 <div class="col-md-4 mb-3">
@@ -29,7 +29,7 @@
                                         id="description" placeholder="Enter short description">
                                 </div>
 
-                                
+
                             </div>
 
                             <!-- ISBN & Page Number -->
@@ -47,8 +47,8 @@
 
                                 <div class="col-md-4 mb-3">
                                     <label for="pageNumber" class="form-label">Copy Right Year</label>
-                                    <input type="text" class="form-control" v-model="form.copy_right_year" id="pageNumber"
-                                        placeholder="Enter Copy Right Year">
+                                    <input type="text" class="form-control" v-model="form.copy_right_year"
+                                        id="pageNumber" placeholder="Enter Copy Right Year">
                                 </div>
                             </div>
 
@@ -86,25 +86,33 @@
                                 <div class="col-md-4 mb-3">
                                     <div class="">
                                         <label for="image" class="form-label">Website Logo (100X50)</label>
-                                        <input type="file" class="form-control" id="image" @change="uploadImage($event)">
+                                        <input type="file" class="form-control" id="image"
+                                            @change="uploadImage($event)">
 
                                     </div>
-                                    
+
                                 </div>
 
-                                <div class="col-md-4 mb-3 d-flex">
-                                    <div class="col-md-4"><img  :src="form.previewImage ? form.previewImage : page.props.list.logo"
-                                        class="form-control form-control-sm" style="width: 100px; height: 80px" alt=""></div>
-
-                                    <div class="col-md-8">
-                                        <div>
-                                        <label for="image" class="form-label">Favicon</label>
-                                        <input type="file" class="form-control" @change="favUploadImage($event)" id="image">
-                                    </div>
-                                    </div>
-                                    
-                                      
+                                <div class="col-md-4 mb-3"><img
+                                        :src="form.previewImage ? form.previewImage : page.props.list.logo"
+                                        class="form-control form-control-sm" style="width: 100px; height: 80px" alt="">
                                 </div>
+
+
+
+
+                                <div class="col-md-4">
+                                    <label for="image" class="form-label">Favicon</label>
+                                    <input type="file" class="form-control" @change="favUploadImage($event)" id="image">
+
+                                </div>
+
+
+                                <div class="col-md-4 mb-3"><img
+                                        :src="form.previewImageFev ? form.previewImageFev : page.props.list.fav_icon"
+                                        class="form-control form-control-sm" style="width: 100px; height: 80px" alt="">
+                                </div>
+
                             </div>
 
 
@@ -143,8 +151,9 @@ const form = useForm({
     'copy_right': page.props.list.copy_right,
     'previewImage': '',
     'oldImage': page.props.list.logo,
-    'oldFavicon': page.props.list.fav_icon
-    
+    'oldFavicon': page.props.list.fav_icon,
+    'previewImageFev': '',
+
 
 })
 
@@ -155,93 +164,94 @@ const uploadImage = (event) => {
 
 const favUploadImage = (event) => {
     form.favicon = event.target.files[0];
+    form.previewImageFev = URL.createObjectURL(event.target.files[0]);
 }
 const submit = () => {
 
-    if(form.oldImage == null){
-        if(form.logo == ''){
+    if (form.oldImage == null) {
+        if (form.logo == '') {
             new Notify({
                 status: 'error',
                 title: 'Logo is required',
                 autotimeout: 2000,
             })
         }
-        
-    }else if(form.oldFavicon == '' ) {
+
+    } else if (form.oldFavicon == '') {
         new Notify({
             status: 'error',
             title: 'favicon is required',
             autotimeout: 2000,
         })
-    }else if(form.address == '') {
+    } else if (form.address == '') {
         new Notify({
             status: 'error',
             title: 'Address is required',
             autotimeout: 2000,
         })
-    }else if(form.title == '') {
+    } else if (form.title == '') {
         new Notify({
             status: 'error',
             title: 'Address is required',
             autotimeout: 2000,
         })
-    }else if(form.short_description == '') {
+    } else if (form.short_description == '') {
         new Notify({
             status: 'error',
             title: 'Short description is required',
             autotimeout: 2000,
         })
-    }else if(form.email == '') {
+    } else if (form.email == '') {
         new Notify({
             status: 'error',
             title: 'Email is required',
             autotimeout: 2000,
         })
-    }else if(form.copy_right_year == '') {
+    } else if (form.copy_right_year == '') {
         new Notify({
             status: 'error',
             title: 'Copyright year is required',
             autotimeout: 2000,
         })
-    }else if(form.copy_right == '') {
+    } else if (form.copy_right == '') {
         new Notify({
             status: 'error',
             title: 'copyright is required',
             autotimeout: 2000,
         })
-    }else{
+    } else {
         form.post('/user-menu-footer-create', {
-        onSuccess: () => {
-            if (page.props.flash.success) {
-                new Notify({
-                    status: 'success',
-                    title: page.props.flash.success.message,
-                    autotimeout: 2000,
-                })
-                router.get('/menu-footer')
-            }else if(page.props.flash.error){
+            onSuccess: () => {
+                if (page.props.flash.success) {
+                    new Notify({
+                        status: 'success',
+                        title: page.props.flash.success.message,
+                        autotimeout: 2000,
+                    })
+                    router.get('/menu-footer')
+                } else if (page.props.flash.error) {
+                    new Notify({
+                        status: 'error',
+                        title: page.props.flash.error.message,
+                        autotimeout: 2000,
+                    })
+                }
+
+
+            },
+            onError: () => {
                 new Notify({
                     status: 'error',
-                    title: page.props.flash.error.message,
+                    title: 'Create failed',
                     autotimeout: 2000,
                 })
             }
-            
-            
-        },
-        onError: () => {
-            new Notify({
-                status: 'error',
-                title: 'Create failed',
-                autotimeout: 2000,
-            })
-        }
-    }); 
+        });
     }
 
-    
 
-    
+
+
 }
 
 </script>

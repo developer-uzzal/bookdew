@@ -97,7 +97,7 @@
             </ul>
           </li>
 
-          <li class="nav-item" :class="page.url === '/user-slider' || page.url === '/user-about' || page.url === '/user-contact' ?  'menu-open' : ''">
+          <li class="nav-item" :class="page.url === '/user-slider' || page.url === '/user-about' || page.url === '/user-contact' || page.url === '/user-donate' ?  'menu-open' : ''">
             <a href="#" class="nav-link">
               <i class=" nav-icon fa-solid fa-list"></i>
               <p>
@@ -123,6 +123,13 @@
                 <Link href="/user-contact" class="nav-link" :class="page.url === '/user-contact' ? 'active' : ''">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Contact</p>
+                </Link>
+              </li>
+
+              <li class="nav-item">
+                <Link href="/user-donate" class="nav-link" :class="page.url === '/user-donate' ? 'active' : ''">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Donate</p>
                 </Link>
               </li>
 

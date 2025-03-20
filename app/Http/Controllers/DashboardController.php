@@ -20,9 +20,11 @@ class DashboardController extends Controller
         $email = $request->session()->get('userEmail');
         $user = User::where('email', $email)->first();
 
+        $premium = Book::where('is_premium', 1)->count();
+
         $member = Member::where("is_read", 0)->count();
         $contactMessage = ContactMessage::where("is_read", 0)->count();
 
-        return Inertia::render('Auth/Dashboard',['bookCount'=> $bookCount,'categoryCount'=> $categoryCount,'user'=>$user,'downloadCount'=>$downloadCount,'member'=>$member,'contactMessage'=>$contactMessage]);
+        return Inertia::render('Auth/Dashboard',['bookCount'=> $bookCount,'categoryCount'=> $categoryCount,'user'=>$user,'downloadCount'=>$downloadCount,'member'=>$member,'contactMessage'=>$contactMessage,'premium'=>$premium]);
     }
 }

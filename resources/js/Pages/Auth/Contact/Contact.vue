@@ -1,4 +1,6 @@
 <template>
+
+
     <Contact></Contact>
 </template>
 
@@ -7,10 +9,11 @@ import AdminDashboard from '../../../Layouts/AdminDashboard.vue';
  defineOptions({
     layout: AdminDashboard
  })
- 
+
 import Contact from '../../../Components/Admin/ContactComponent/Contact.vue';
+
 </script>
 
-<style scoped>
+<style  scoped>
 
 </style>

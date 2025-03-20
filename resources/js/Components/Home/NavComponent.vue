@@ -28,7 +28,7 @@ const submit = () => {
     }
 
     const search = slugify(search1.value)
-    
+
 
     router.get("/search/"+search)
 }
@@ -71,12 +71,12 @@ const submit = () => {
                             </Link>
                             <ul class="dropdown-menu">
                                 <li><Link class="dropdown-item text-dark fw-bold" :href="`/book/language/${language.slug}`" v-for="(language, index) in page.props.languages" :key="index">{{ language.name? language.name : 'Unknown' }}</Link></li>
-                                
+
                             </ul>
                         </li>
 
                         <li class="nav-item">
-                            <Link class="nav-link text-dark fw-bold" href="/donate">Donate <i class="fa-solid fa-heart text-danger"></i></Link>
+                            <Link class="nav-link text-dark fw-bold" href="/donate-us">Donate <i class="fa-solid fa-heart text-danger"></i></Link>
                         </li>
                     </ul>
                     <div class="col-md-7">

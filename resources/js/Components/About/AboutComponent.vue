@@ -4,7 +4,7 @@
 		<div class="row gx-4 align-items-center justify-content-between">
 			<div class="col-md-5 order-2 order-md-1">
 				<div class="mt-5 mt-md-0">
-					
+
 					<h2 class="display-5 fw-bold border-bottom border-4 border-primary d-inline">{{ page.props.list.title? page.props.list.title : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.' }}</h2>
 					<p class="lead mt-3">{{ page.props.list.long_des? page.props.list.long_des : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.' }}</p>
 				</div>

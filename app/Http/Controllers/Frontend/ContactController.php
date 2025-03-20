@@ -23,6 +23,7 @@ class ContactController extends Controller
     }
 
     function AdminContactPage(Request $request){
+
         $user = User::where("email", $request->session()->get('userEmail'))->first();
         $list = Contact::first();
         $member = Member::where("is_read", 0)->count();
@@ -81,8 +82,8 @@ class ContactController extends Controller
     }
 
     function AdminNewUpdatesContactPage(Request $request){
-        $contactMessages = ContactMessage::get();
-        $bookRequest = Member::get();
+        $contactMessages = ContactMessage::latest()->get();
+        $bookRequest = Member::latest()->get();
         $member = Member::where("is_read", 0)->count();
         $contactMessage = ContactMessage::where("is_read", 0)->count();
         $user = User::where("email", $request->session()->get('userEmail'))->first();

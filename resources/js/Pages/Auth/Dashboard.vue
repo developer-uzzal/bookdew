@@ -1,5 +1,5 @@
 <template>
-    
+
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -9,10 +9,10 @@
         </div>
       </div>
     </div>
-    
+
     <section class="content">
       <div class="container-fluid">
-        
+
         <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
@@ -63,9 +63,9 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h3>{{ page.props.premium}}</h3>
 
-                <p>Unique Visitors</p>
+                <p>Total Premium Books</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
@@ -75,10 +75,10 @@
           </div>
           <!-- ./col -->
         </div>
- 
+
       </div>
     </section>
-   
+
 
 
 </template>

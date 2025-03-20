@@ -54,7 +54,7 @@ const page = usePage();
               Help
             </h6>
             <p>
-              <Link href="/donate" class="text-reset text-decoration-none text-primary">Donate</Link>
+              <Link href="/donate-us" class="text-reset text-decoration-none text-primary">Donate</Link>
             </p>
             <!-- <p>
               <Link href="/authors" class="text-reset text-decoration-none text-primary">Authors</Link>
@@ -64,8 +64,13 @@ const page = usePage();
               <Link href="/contact" class="text-reset text-decoration-none text-primary">Contact</Link>
             </p>
             <p>
-              <Link href="#!" class="text-reset text-decoration-none text-primary">Privacy Policy</Link>
+              <Link href="/privacy-policy" class="text-reset text-decoration-none text-primary">Privacy & Policy</Link>
             </p>
+
+            <p>
+              <Link href="/privacy-policy" class="text-reset text-decoration-none text-primary">Terms & Conditions</Link>
+            </p>
+
           </div>
           <!-- Grid column -->
 

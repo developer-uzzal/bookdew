@@ -36,8 +36,8 @@
                                        <div class="modal-body">
                                            <input v-model="form.name" type="text" class="form-control w-100"
                                                placeholder="Category Name">
-                                            
-                                            
+
+
                                             <div class="mt-3">
                                                 <label for="status" class="form-label mb-0"> Is Active</label>
                                                 <input type="checkbox" v-model="form.status" class="form-check mt-0">
@@ -57,32 +57,6 @@
                        </div>
 
                        <div>
-                           <!-- <table class="table table-bordered">
-                               <thead class="table-dark">
-                                   <tr >
-                               <th>S.No</th>
-                               <th>Category Name</th>
-                               <th>Action</th>
-                           </tr>
-                               </thead>
-
-                               <tbody>
-
-                                   <tr v-for="(category, index) in page.props.list.data">
-                               <td>{{ page.props.list.from + index }}</td>
-                               <td>{{ category.name }}</td>
-                               <td> 
-                                   <button class="btn btn-sm btn-primary me-2" data-bs-toggle="modal"
-                                               data-bs-target="#editModal"
-                                               @click="categoryEditClick(category.id, category.name)" >Edit</button> 
-                                   <button class="btn btn-sm btn-danger me-2" data-bs-toggle="modal"
-                                               data-bs-target="#deleteModal"
-                                               @click="categoryDeleteClick(category.id)">Delete</button>
-                               </td>
-                           </tr>
-
-                               </tbody>
-                       </table> -->
 
 
                        <EasyDataTable buttons-pagination alternating :headers="header" :items="item"
@@ -110,22 +84,7 @@
 
 
                        </div>
-                       
 
-                       <nav aria-label="Page navigation example">
-                           
-                           <ul class="pagination">
-                               <li v-for="(category, index) in page.props.list.links" :key="index" class="page-item" :class="{ active: category.active, disabled: !category.url }">
-                                   
-                                   <Link class="page-link" :href="category.url?category.url : '#'">
-                                       {{  index === 0 ? 'Previous' :  index === page.props.list.links.length - 1 ? 'Next' : category.label }}
-
-                                       <!-- {{ category.label === '&laquo; Previous' ? 'Previous' :  category.label === ' Next &raquo;' ? 'Next' : category.label }} -->
-                                   </Link>
-
-                                </li>
-                           </ul>
-                       </nav>
 
 
                        <!-- edit Modal -->
@@ -319,7 +278,7 @@ const categoryUpdateSubmit = () => {
                        autotimeout: 2000,
                    })
 
-                   categoryEdit.reset();    
+                   categoryEdit.reset();
                    router.get("/user-category");
 
                } else if (page.props.flash.error) {
@@ -340,11 +299,11 @@ const categoryUpdateSubmit = () => {
        },
        );
    }
-                       
+
    }
 
 
-   
+
    // for delete category
 
    const categoryDelete = useForm({
@@ -354,11 +313,11 @@ const categoryUpdateSubmit = () => {
    const categoryDeleteClick = (id, book) => {
         categoryDelete.id = id;
         categoryDelete.book = book;
-        
+
    }
 
    const deleteConfirm = () => {
-       
+
     if(categoryDelete.book > 0){
         new Notify({
             status: 'error',
@@ -385,7 +344,7 @@ const categoryUpdateSubmit = () => {
                }
            },
            onError: () => {
-               new Notify({                
+               new Notify({
                    status: 'error',
                    title: 'Delete failed',
                    autotimeout: 2000,
@@ -394,8 +353,8 @@ const categoryUpdateSubmit = () => {
        },
        );
     }
-          
-       
+
+
 
    }
 

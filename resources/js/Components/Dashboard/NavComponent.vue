@@ -18,6 +18,15 @@
 
       </li>
 
+
+      <li class="nav-item">
+        <Link class="nav-link" href="/clear-cache">
+            <img style="width: 20px;" class="img-fluid" src="/public/clean.svg" alt="">
+        </Link>
+
+      </li>
+
+
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -34,7 +43,7 @@
             <!-- <span class="float-right text-muted text-sm">12 hours</span> -->
           </a>
           <div class="dropdown-divider"></div>
-          
+
           <div class="dropdown-divider"></div>
           <Link href="/new-updates-contact" class="dropdown-item dropdown-footer">See All Notifications</Link>
         </div>
